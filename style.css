@@ -1,12 +1,15 @@
 /*
  Theme Name:   Flat-Sky
- Description:  Flat-Sky is a free theme which works nice for a personal blog, magazine, news or review website.
+ Description:  Flat-Sky is a free friendly theme which works nice for a personal blog, magazine, news or review website. It has a modern and elegant design, which brings out a happy look. The theme comes with a colored menu bar and a very clean look.
+ 
  Author:       Themeisle
  Author URI:   https://themeisle.com
  Template:     flat
- Version:      1.0.1
+ Version:      1.0.2
  License:      GNU General Public License version 2
  License URI:  license.txt
+ Text Domain:  flat-sky
+ Domain Path:  /languages/
  Tags:         blue, white, gray, two-columns, left-sidebar, responsive-layout, custom-background, custom-menu, editor-style, featured-images, threaded-comments, translation-ready
 */
 
@@ -37,7 +40,7 @@
 }
 
 .hentry .entry-meta {
-    color: #777 !important;
+    color: #3BC4FA !important;
     font-size: 16px !important;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -93,19 +96,39 @@ p {
 }
 
 .published {
-	background: url("assets/img/date.png") 1px 2px no-repeat;
+	position:relative;
 	padding-left: 20px;
+}
+.published:before {
+	position:absolute;
+    font-family: FontAwesome;
+    left:-4px;
+    content: "\f073";
 }
 
 .author {
-	background: url("assets/img/user.png") 1px 2px no-repeat;
+	position:relative;
 	padding-left: 20px;
+}
+.author:before {
+	position:absolute;
+    font-family: FontAwesome;
+    left:2px;
+    content: "\f007";
 }
 
 .comments-link {
-	background: url("assets/img/comm.png") 1px 2px no-repeat;
+    position:relative;
 	padding-left: 20px;
+}    
+.comments-link:before {
+	position:absolute;
+    font-family: FontAwesome;
+    left:-4px;
+    content: "\f0e5";
 }
+
+
 
 .current_page_item li{
 	background-color:red !important;
