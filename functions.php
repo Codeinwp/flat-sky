@@ -21,6 +21,8 @@ if ( ! function_exists( 'flat_sky_setup' ) ) :
 			'admin-preview-callback' => '',
 		);
 		add_theme_support( 'custom-background', $custom_background_support ); # @link http://codex.wordpress.org/Custom_Backgrounds
+		
+		load_child_theme_textdomain( 'flat-sky', get_stylesheet_directory() . '/languages' );
 
 	}
 endif;
