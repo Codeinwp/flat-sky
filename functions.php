@@ -27,3 +27,51 @@ if ( ! function_exists( 'flat_sky_setup' ) ) :
 	}
 endif;
 add_action( 'after_setup_theme', 'flat_sky_setup' );
+
+
+/**
+ * Notice in Customize to announce the theme is not maintained anymore
+ */
+function flat_sky_customize_register( $wp_customize ) {
+
+	require_once get_stylesheet_directory() . '/class-ti-notify.php';
+
+	$wp_customize->register_section_type( 'Ti_Notify' );
+
+	$wp_customize->add_section(
+		new Ti_Notify(
+			$wp_customize,
+			'ti-notify',
+			array( /* translators: Link to the recommended theme */
+				'text'     => sprintf( __( 'This child theme is not maintained anymore, consider using the parent theme %1$s or check-out our awesome blogging theme: %2$s.','flat-sky' ), sprintf( '<a href="' . admin_url( 'theme-install.php?theme=flat' ) . '">%s</a>', 'Flat' ), sprintf( '<a href="' . admin_url( 'theme-install.php?theme=amadeus' ) . '">%s</a>', 'Amadeus' ) ),
+				'priority' => 0,
+			)
+		)
+	);
+
+	$wp_customize->add_setting( 'flat-sky-notify', array(
+		'sanitize_callback' => 'esc_html',
+	) );
+
+	$wp_customize->add_control( 'flat-sky-notify', array(
+		'label'    => __( 'Notification', 'flat-sky' ),
+		'section'  => 'ti-notify',
+		'priority' => 1,
+	) );
+}
+add_action( 'customize_register', 'flat_sky_customize_register' );
+
+/**
+ * Notice in admin dashboard to announce the theme is not maintained anymore
+ */
+function flat_sky_admin_notice() {
+
+	global $pagenow;
+
+	if ( is_admin() && ( 'themes.php' == $pagenow ) && isset( $_GET['activated'] ) ) {
+		echo '<div class="updated notice is-dismissible"><p>';
+		printf( __( 'This child theme is not maintained anymore, consider using the parent theme %1$s or check-out our awesome blogging theme: %2$s.','flat-sky' ), sprintf( '<a href="' . admin_url( 'theme-install.php?theme=flat' ) . '">%s</a>', 'Flat' ), sprintf( '<a href="' . admin_url( 'theme-install.php?theme=amadeus' ) . '">%s</a>', 'Amadeus' ) );
+		echo '</p></div>';
+	}
+}
+add_action( 'admin_notices', 'flat_sky_admin_notice', 99 );
